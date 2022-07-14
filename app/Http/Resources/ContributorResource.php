@@ -16,6 +16,7 @@ class ContributorResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'photo' => Storage::disk('cdn')->url($this->photo),
             'role' => $this->role,

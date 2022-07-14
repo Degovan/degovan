@@ -19,4 +19,12 @@ class ContributorController extends Controller
             'contributors'
         );
     }
+
+    public function show(Contributor $contributor)
+    {
+        return $this->success(
+            ContributorResource::make($contributor),
+            'Success get contributor data'
+        );
+    }
 }
