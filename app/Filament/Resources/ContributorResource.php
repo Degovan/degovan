@@ -51,7 +51,7 @@ class ContributorResource extends Resource
                 Tables\Columns\TextColumn::make('quotes'),
             ])
             ->filters([
-                // 
+                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
