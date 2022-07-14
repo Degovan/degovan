@@ -26,6 +26,7 @@ class ContributorResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('photo')
+                    ->required()
                     ->image()
                     ->disk('cdn')
                     ->directory('contributors'),
