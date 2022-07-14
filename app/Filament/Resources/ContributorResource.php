@@ -16,6 +16,8 @@ class ContributorResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -40,17 +42,16 @@ class ContributorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('photo'),
-                Tables\Columns\TextColumn::make('role'),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\ImageColumn::make('photo')
+                    ->disk('cdn'),
+                Tables\Columns\TextColumn::make('role')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('quotes'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
             ])
             ->filters([
-                //
+                // 
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
