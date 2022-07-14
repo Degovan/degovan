@@ -44,6 +44,14 @@ return [
             'throw' => false,
         ],
 
+        'cdn' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/cdn'),
+            'url' => env('CDN_URL'),
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
