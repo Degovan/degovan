@@ -19,7 +19,7 @@ class ContributorFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'photo' => Str::random() . '.png',
+            'photo' => Str::random().'.png',
             'role' => fake()->randomElement([
                 'Backend Developer',
                 'Frontend Developer',

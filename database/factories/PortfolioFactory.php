@@ -19,9 +19,9 @@ class PortfolioFactory extends Factory
     {
         return [
             'name' => fake()->sentence(),
-            'images' => [Str::random() . '.png'],
+            'images' => [Str::random().'.png'],
             'date' => fake()->date(),
-            'description' => fake()->paragraph()
+            'description' => fake()->paragraph(),
         ];
     }
 }

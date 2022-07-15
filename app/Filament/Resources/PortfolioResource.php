@@ -9,7 +9,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Validation\Rule;
 
 class PortfolioResource extends Resource
 {
@@ -26,7 +25,7 @@ class PortfolioResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(100)
-                    ->unique('portfolios', 'name', fn($record) => $record),
+                    ->unique('portfolios', 'name', fn ($record) => $record),
                 Forms\Components\DatePicker::make('date')
                     ->required(),
                 Forms\Components\Textarea::make('description'),

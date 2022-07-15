@@ -6,7 +6,6 @@ use App\Models\Portfolio;
 use Filament\Pages\Actions\DeleteAction;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
-
 use function Pest\Livewire\livewire;
 
 beforeEach(function () {
@@ -14,18 +13,18 @@ beforeEach(function () {
     $this->image = UploadedFile::fake()->image('avatar.png');
 });
 
-it('can render page', function() {
+it('can render page', function () {
     $this->get(PortfolioResource::getUrl())->assertStatus(200);
 });
 
-it('can list all', function() {
+it('can list all', function () {
     $portfolios = Portfolio::factory(10)->create();
 
     livewire(Pages\ListPortfolios::class)
         ->assertCanSeeTableRecords($portfolios);
 });
 
-it('can create', function() {
+it('can create', function () {
     livewire(Pages\CreatePortfolio::class)
         ->fillForm([
             'name' => $this->porto->name,
@@ -37,11 +36,11 @@ it('can create', function() {
         ->assertHasNoFormErrors();
 });
 
-it('can edit', function() {
+it('can edit', function () {
     $savedPorto = Portfolio::factory()->create();
 
     livewire(Pages\EditPortfolio::class, [
-        'record' => $savedPorto->getKey()
+        'record' => $savedPorto->getKey(),
     ])
         ->fillForm([
             'name' => $this->porto->name,
@@ -59,11 +58,11 @@ it('can edit', function() {
             ->description->toBe($this->porto->description);
 });
 
-it('can delete', function() {
+it('can delete', function () {
     $savedPorto = Portfolio::factory()->create();
 
     livewire(Pages\EditPortfolio::class, [
-        'record' => $savedPorto->getKey()
+        'record' => $savedPorto->getKey(),
     ])
         ->callPageAction(DeleteAction::class);
 
