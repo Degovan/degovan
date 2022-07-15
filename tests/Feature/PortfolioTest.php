@@ -6,6 +6,7 @@ use App\Models\Portfolio;
 use Filament\Pages\Actions\DeleteAction;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
+use Illuminate\Testing\Fluent\AssertableJson;
 use function Pest\Livewire\livewire;
 
 beforeEach(function () {
@@ -67,4 +68,28 @@ it('can delete', function () {
         ->callPageAction(DeleteAction::class);
 
     $this->assertModelMissing($savedPorto);
+});
+
+test('API: can list all', function () {
+    Portfolio::factory(10)->create();
+    $response = $this->get(route('portfolios.index'));
+
+    $response->assertStatus(200);
+    $response->assertJson(fn (AssertableJson $json) => $json->has('meta')
+            ->has('data')
+            ->has('data.portfolios', 10)
+            ->has('data.portfolios.0', fn ($json) => $json->hasAll(['id', 'name', 'slug', 'images'])
+            )
+    );
+});
+
+test('API: can show detail', function () {
+    $savedCont = Portfolio::factory()->create();
+    $response = $this->get(route('portfolios.show', $savedCont));
+
+    $response->assertStatus(200);
+    $response->assertJson(fn (AssertableJson $json) => $json->has('meta')
+            ->has('data', fn ($json) => $json->hasAll(['id', 'name', 'slug', 'images', 'date', 'description'])
+            )
+    );
 });
