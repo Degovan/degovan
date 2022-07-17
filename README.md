@@ -39,6 +39,7 @@ Repository containing the source code of the main [Degovan](https://degovan.com)
     
 ## Contributing
 - Create a new branch, then do a pull request so we can review the code and what features you added
+- Run ``php artisan test`` to ensure your passed all testing
 - Run ``./vendor/bin/pint`` to ensure your code is in accordance with the laravel coding standard
 - The changes you make must pass all the tests
  
