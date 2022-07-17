@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cimg/php:8.1.7-browsers
+    steps:
+      - checkout
+      - run: sudo apt update
+
+      # Download and cache php dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+      - run: composer install -n --prefer-dist
+      - save_cache:
+          paths:
+            - "./vendor"
+          key: v1-dependencies-{{ checksum "composer.json" }}
+      
+      # Download and cache nodejs dependencies
+      - restore_cache:
+          keys:
+            - node-v1-{{ checksum "package.json" }}
+            - node-v1-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: node-v1-{{ checksum "package.json" }}
+
+      # Prepare the database
+      - run: touch storage/testing.sqlite
+      - run: php artisan key:generate --env=testing
+      - run: php artisan migrate --env=testing --force
+
+      # Run test with pest and laravel pint
+      - run: ./vendor/bin/pest -v
+      - run: ./vendor/bin/pint --test -v
