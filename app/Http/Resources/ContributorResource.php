@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
 
 class ContributorResource extends JsonResource
 {
@@ -18,7 +17,7 @@ class ContributorResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'photo' => Storage::disk('cdn')->url($this->photo),
+            'photo' => cdn($this->photo),
             'role' => $this->role,
             'quotes' => $this->quotes,
         ];

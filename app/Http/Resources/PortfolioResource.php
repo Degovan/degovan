@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
 
 class PortfolioResource extends JsonResource
 {
@@ -21,7 +20,7 @@ class PortfolioResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
-            'images' => array_map(fn ($img) => Storage::disk('cdn')->url($img), $this->images),
+            'images' => array_map(fn ($img) => cdn($img), $this->images),
             'date' => $this->when($show, $this->date),
             'description' => $this->when($show, $this->description),
         ];
