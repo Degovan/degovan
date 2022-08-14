@@ -74,7 +74,6 @@ it('can deleted', function () {
     $this->assertModelMissing($saveTestimo);
 });
 
-
 test('API: can list all', function () {
     Testimonial::factory(10)->create();
     $response = $this->get(route('testimonials.index'));

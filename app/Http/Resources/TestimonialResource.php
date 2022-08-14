@@ -15,12 +15,12 @@ class TestimonialResource extends JsonResource
      */
     public function toArray($request)
     {
-       return [
+        return [
             'id' => $this->id,
             'name' => $this->name,
             'photo' => Storage::disk('cdn')->url($this->photo),
             'label' => $this->label,
             'quote' => $this->quote,
-       ];
+        ];
     }
 }

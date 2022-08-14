@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Testimonial;
-use Illuminate\Http\Request;
 use App\Http\Resources\TestimonialResource;
+use App\Models\Testimonial;
 use App\Traits\ApiResponser;
 
 class TestimonialController extends Controller
 {
-
     use ApiResponser;
 
     public function index()
