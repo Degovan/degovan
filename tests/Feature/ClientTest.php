@@ -27,7 +27,7 @@ it('can list all', function () {
 it('can create', function () {
     livewire(Pages\CreateClient::class)
         ->fillForm([
-            'name' => $this->client->name,
+            'name' => "Client Name",
         ])
         ->set('data.logo', $this->logo)
         ->call('create')
