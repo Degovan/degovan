@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ContributorController;
 use App\Http\Controllers\Api\PortfolioController;
+use App\Http\Controllers\Api\TestimonialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('contributors', ContributorController::class)
     ->only(['index', 'show']);
 Route::apiResource('portfolios', PortfolioController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('testimonials', TestimonialController::class)
     ->only(['index', 'show']);
