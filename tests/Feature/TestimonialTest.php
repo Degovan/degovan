@@ -3,12 +3,12 @@
 namespace Tests\Feature;
 
 use App\Filament\Resources\TestimonialResource;
+use App\Filament\Resources\TestimonialResource\Pages\CreateTestimonial;
+use App\Filament\Resources\TestimonialResource\Pages\EditTestimonial;
+use App\Filament\Resources\TestimonialResource\Pages\ListTestimonials;
 use App\Models\Testimonial;
-use Illuminate\Http\UploadedFile;
-use App\Filament\Resources\TestimonialResource\Pages\{CreateTestimonial, EditTestimonial, ListTestimonials};
 use Filament\Pages\Actions\DeleteAction;
-use Livewire\Livewire;
-
+use Illuminate\Http\UploadedFile;
 use function Pest\Livewire\livewire;
 
 beforeEach(function () {
@@ -39,9 +39,8 @@ it('can create', function () {
     ->assertHasNoFormErrors();
 });
 
-it('can edit', function() {
+it('can edit', function () {
     $saveTestimo = Testimonial::factory()->create();
-
 
     livewire(EditTestimonial::class, [
         'record' => $saveTestimo->getKey(),
@@ -55,13 +54,13 @@ it('can edit', function() {
         ->call('save')
         ->assertHasNoFormErrors();
 
-        expect($saveTestimo->refresh())
+    expect($saveTestimo->refresh())
                 ->name->toBe($this->testimo->name)
                 ->label->toBe($this->testimo->label)
                 ->quote->toBe($this->testimo->quote);
 });
 
-it('can deleted', function() {
+it('can deleted', function () {
     $saveTestimo = Testimonial::factory()->create();
 
     Livewire(EditTestimonial::class, [
