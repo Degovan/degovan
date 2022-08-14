@@ -19,7 +19,7 @@ class ClientFactory extends Factory
     {
         return [
             'name' => fake()->sentence(),
-            'logo' => Str::random() . '.png',
+            'logo' => Str::random().'.png',
         ];
     }
 }

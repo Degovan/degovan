@@ -5,25 +5,26 @@ use App\Filament\Resources\ClientResource\Pages;
 use App\Models\Client;
 use Filament\Pages\Actions\DeleteAction;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Testing\Fluent\AssertableJson;
 use function Pest\Livewire\livewire;
 
-beforeEach(function() {
+beforeEach(function () {
     $this->client = Client::factory()->make();
     $this->logo = UploadedFile::fake()->image('logo.png');
 });
 
-it('can render page', function() {
+it('can render page', function () {
     $this->get(ClientResource::getUrl('index'))->assertStatus(200);
 });
 
-it('can list all', function() {
+it('can list all', function () {
     $clients = Client::factory(10)->create();
 
     livewire(Pages\ListClients::class)
         ->assertCanSeeTableRecords($clients);
 });
 
-it('can create', function() {
+it('can create', function () {
     livewire(Pages\CreateClient::class)
         ->fillForm([
             'name' => $this->client->name,
@@ -61,4 +62,28 @@ it('can delete', function () {
         ->callPageAction(DeleteAction::class);
 
     $this->assertModelMissing($savedClient);
+});
+
+test('API: can list all', function () {
+    Client::factory(10)->create();
+    $response = $this->get(route('clients.index'));
+
+    $response->assertStatus(200);
+    $response->assertJson(fn (AssertableJson $json) => $json->has('meta')
+            ->has('data')
+            ->has('data.clients', 10)
+            ->has('data.clients.0', fn ($json) => $json->hasAll(['id', 'name', 'logo'])
+            )
+    );
+});
+
+test('API: can show detail', function () {
+    $savedClient = Client::factory()->create();
+    $response = $this->get(route('clients.show', $savedClient));
+
+    $response->assertStatus(200);
+    $response->assertJson(fn (AssertableJson $json) => $json->has('meta')
+            ->has('data', fn ($json) => $json->hasAll(['id', 'name', 'logo'])
+            )
+    );
 });
