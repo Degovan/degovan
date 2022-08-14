@@ -18,7 +18,7 @@ class ContributorResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'photo' => Storage::disk('cdn')->url($this->photo),
+            'photo' => cdn($this->photo),
             'role' => $this->role,
             'quotes' => $this->quotes,
         ];
