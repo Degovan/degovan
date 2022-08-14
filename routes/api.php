@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\ContributorController;
 use App\Http\Controllers\Api\PortfolioController;
 use App\Http\Controllers\Api\TestimonialController;
@@ -23,7 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('contributors', ContributorController::class)
     ->only(['index', 'show']);
+
 Route::apiResource('portfolios', PortfolioController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('clients', ClientController::class)
     ->only(['index', 'show']);
 
 Route::apiResource('testimonials', TestimonialController::class)
