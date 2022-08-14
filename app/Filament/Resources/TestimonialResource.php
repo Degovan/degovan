@@ -7,12 +7,10 @@ use App\Models\Testimonial;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
-use Illuminate\Database\Eloquent\Collection;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 
@@ -36,7 +34,7 @@ class TestimonialResource extends Resource
                 Textarea::make('quote')
                             ->rows(10)
                             ->cols('28')
-                            ->required()
+                            ->required(),
 
             ]);
     }
@@ -49,7 +47,7 @@ class TestimonialResource extends Resource
                 TextColumn::make('label')->sortable(),
                 ImageColumn::make('photo')
                                 ->disk('cdn'),
-                TextColumn::make('quote')
+                TextColumn::make('quote'),
             ])
             ->filters([
                 //
