@@ -9,6 +9,7 @@ use App\Filament\Resources\TestimonialResource\Pages\ListTestimonials;
 use App\Models\Testimonial;
 use Filament\Pages\Actions\DeleteAction;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Testing\Fluent\AssertableJson;
 use function Pest\Livewire\livewire;
 
 beforeEach(function () {
@@ -71,4 +72,28 @@ it('can deleted', function () {
         );
 
     $this->assertModelMissing($saveTestimo);
+});
+
+test('API: can list all', function () {
+    Testimonial::factory(10)->create();
+    $response = $this->get(route('testimonials.index'));
+
+    $response->assertStatus(200);
+    $response->assertJson(fn (AssertableJson $json) => $json->has('meta')
+            ->has('data')
+            ->has('data.testimonials', 10)
+            ->has('data.testimonials.0', fn ($json) => $json->hasAll(['id', 'name', 'photo', 'label', 'quote'])
+            )
+    );
+});
+
+test('API: can show detail', function () {
+    $savedCont = Testimonial::factory()->create();
+    $response = $this->get(route('testimonials.show', $savedCont));
+
+    $response->assertStatus(200);
+    $response->assertJson(fn (AssertableJson $json) => $json->has('meta')
+            ->has('data', fn ($json) => $json->hasAll(['id', 'name', 'photo', 'label', 'quote'])
+            )
+    );
 });
