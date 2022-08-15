@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\ContributorController;
 use App\Http\Controllers\Api\PortfolioController;
@@ -33,3 +34,6 @@ Route::apiResource('clients', ClientController::class)
 
 Route::apiResource('testimonials', TestimonialController::class)
     ->only(['index', 'show']);
+
+Route::apiResource('/abouts', AboutController::class)
+    ->only(['index']);
