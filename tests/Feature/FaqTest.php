@@ -1,15 +1,11 @@
 <?php
 
-use App\Filament\Resources\ContributorResource;
-use App\Filament\Resources\ContributorResource\Pages;
 use App\Filament\Resources\FaqResource;
 use App\Filament\Resources\FaqResource\Pages\CreateFaq;
 use App\Filament\Resources\FaqResource\Pages\EditFaq;
 use App\Filament\Resources\FaqResource\Pages\ListFaqs;
-use App\Models\Contributor;
 use App\Models\Faq;
 use Filament\Pages\Actions\DeleteAction;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Testing\Fluent\AssertableJson;
 use function Pest\Livewire\livewire;
 

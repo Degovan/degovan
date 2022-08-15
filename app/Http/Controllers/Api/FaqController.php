@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\FaqResource;
 use App\Models\Faq;
 use App\Traits\ApiResponser;
-use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
@@ -20,5 +19,4 @@ class FaqController extends Controller
             'faqs'
         );
     }
-
 }
