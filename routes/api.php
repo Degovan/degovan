@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\ContributorController;
+use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\PortfolioController;
 use App\Http\Controllers\Api\TestimonialController;
 use Illuminate\Http\Request;
@@ -34,6 +35,9 @@ Route::apiResource('clients', ClientController::class)
 
 Route::apiResource('testimonials', TestimonialController::class)
     ->only(['index', 'show']);
+
+Route::apiResource('faqs', FaqController::class)
+    ->only(['index']);
 
 Route::apiResource('/abouts', AboutController::class)
     ->only(['index']);
