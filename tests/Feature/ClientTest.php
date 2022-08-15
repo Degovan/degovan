@@ -48,9 +48,7 @@ it('can edit', function () {
         ->assertHasNoFormErrors();
 
     expect($savedClient->refresh())
-            ->name->toBe($this->client->name)
-            ->role->toBe($this->client->role)
-            ->quotes->toBe($this->client->quotes);
+            ->name->toBe($this->client->name);
 });
 
 it('can delete', function () {
