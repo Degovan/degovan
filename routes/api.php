@@ -1,6 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\{AboutController, ClientController, ContributorController,PortfolioController, TestimonialController};
+use App\Http\Controllers\Api\AboutController;
+use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\ContributorController;
+use App\Http\Controllers\Api\PortfolioController;
+use App\Http\Controllers\Api\TestimonialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
