@@ -41,14 +41,14 @@ it('can edit', function () {
         'record' => $savedClient->getKey(),
     ])
         ->fillForm([
-            'name' => $this->client->name,
+            'name' => 'Client Name',
         ])
         ->set('data.logo', $this->logo)
         ->call('save')
         ->assertHasNoFormErrors();
 
     expect($savedClient->refresh())
-            ->name->toBe($this->client->name);
+            ->name->toBe('Client Name');
 });
 
 it('can delete', function () {
