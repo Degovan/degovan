@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\ContributorController;
 use App\Http\Controllers\Api\FaqController;
+use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\PortfolioController;
 use App\Http\Controllers\Api\TestimonialController;
 use Illuminate\Http\Request;
@@ -24,20 +25,25 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('contributors', ContributorController::class)
-    ->only(['index', 'show']);
-
-Route::apiResource('portfolios', PortfolioController::class)
-    ->only(['index', 'show']);
+Route::apiResource('abouts', AboutController::class)
+    ->only(['index']);
 
 Route::apiResource('clients', ClientController::class)
     ->only(['index', 'show']);
 
-Route::apiResource('testimonials', TestimonialController::class)
+Route::apiResource('contributors', ContributorController::class)
     ->only(['index', 'show']);
 
 Route::apiResource('faqs', FaqController::class)
     ->only(['index']);
 
-Route::apiResource('/abouts', AboutController::class)
-    ->only(['index']);
+Route::prefix('invoices')->controller(InvoiceController::class)->group(function () {
+    Route::get('', 'index')->name('invoices.index');
+    Route::get('{invoice:code}', 'show')->name('invoices.show');
+});
+
+Route::apiResource('portfolios', PortfolioController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('testimonials', TestimonialController::class)
+    ->only(['index', 'show']);
