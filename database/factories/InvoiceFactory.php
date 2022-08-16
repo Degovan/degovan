@@ -17,7 +17,10 @@ class InvoiceFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'project' => fake()->sentence(),
+            'status' => fake()->randomElement(['pending', 'success', 'failed']),
+            'amount' => random_int(10000, 1000000),
+            'description' => fake()->sentence(),
         ];
     }
 }
