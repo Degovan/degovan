@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ContributorController;
 use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\PortfolioController;
+use App\Http\Controllers\Api\TechStackController;
 use App\Http\Controllers\Api\TestimonialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -47,3 +48,6 @@ Route::apiResource('portfolios', PortfolioController::class)
 
 Route::apiResource('testimonials', TestimonialController::class)
     ->only(['index', 'show']);
+
+Route::apiResource('/stacks', TechStackController::class)
+    ->only(['index']);
