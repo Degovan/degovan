@@ -18,7 +18,7 @@ class TechStackFactory extends Factory
     {
         return [
             'font' => fake()->sentence(),
-            'color' => fake()->sentence()
+            'color' => fake()->sentence(),
         ];
     }
 }

@@ -3,9 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TechStackResource\Pages;
-use App\Filament\Resources\TechStackResource\RelationManagers;
 use App\Models\TechStack;
-use Filament\Forms;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -13,8 +11,6 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TechStackResource extends Resource
 {
@@ -30,7 +26,7 @@ class TechStackResource extends Resource
                             ->prefix('fa-brands fa-')
                             ->required()
                             ->placeholder('laravel'),
-                ColorPicker::make('color')->required()
+                ColorPicker::make('color')->required(),
             ]);
     }
 
@@ -39,7 +35,7 @@ class TechStackResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('font'),
-                TextColumn::make('color')
+                TextColumn::make('color'),
             ])
             ->filters([
                 //

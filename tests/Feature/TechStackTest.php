@@ -6,12 +6,10 @@ use App\Filament\Resources\TechStackResource as ResourcesTechStackResource;
 use App\Filament\Resources\TechStackResource\Pages\CreateTechStack;
 use App\Filament\Resources\TechStackResource\Pages\EditTechStack;
 use App\Filament\Resources\TechStackResource\Pages\ListTechStacks;
-use Illuminate\Testing\Fluent\AssertableJson;
 use App\Models\TechStack;
 use Filament\Pages\Actions\DeleteAction;
-
+use Illuminate\Testing\Fluent\AssertableJson;
 use function Pest\Livewire\livewire;
-
 
 beforeEach(function () {
     $this->stack = TechStack::factory()->make();
@@ -79,4 +77,3 @@ test('API: can list all', function () {
             )
     );
 });
-

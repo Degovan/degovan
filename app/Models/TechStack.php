@@ -10,6 +10,6 @@ class TechStack extends Model
     use HasFactory;
 
     protected $fillable = [
-        'font', 'color'
+        'font', 'color',
     ];
 }
